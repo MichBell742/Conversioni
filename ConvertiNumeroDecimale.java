@@ -1,5 +1,7 @@
 package it.edu.iisgubbio.conversioni;
 
+import java.util.Hashtable;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,7 +17,24 @@ public class ConvertiNumeroDecimale extends Application{
 	TextField cConvertiA= new TextField();
 	Label eNumeroConvertito= new Label("Numero convertito");
 	
+	Hashtable<Integer, Character> dizionario = new Hashtable<Integer, Character>(); //creo il dizionario
+	
+	
+	
 	public void start(Stage finestra){
+
+		for(int i=0; i<10; i++) {
+			int val=i+48;
+			dizionario.put(i, (char)val);
+		}
+		dizionario.put(10, 'A');
+		dizionario.put(11, 'B');
+		dizionario.put(12, 'C');
+		dizionario.put(13, 'D');
+		dizionario.put(14, 'E');
+		dizionario.put(15, 'F');
+		dizionario.put(16, 'G');
+
 		Button bConverti=new Button("Converti");
 		
 		Label eNumeroDecimale= new Label("Numero decimale");
@@ -53,16 +72,15 @@ public class ConvertiNumeroDecimale extends Application{
 			numero=numeroConvertire/base;
 			resto=numeroConvertire-numero*base;
 			numeroConvertire=numero;
-			numeroConvertito=numeroConvertito+resto;
+			if(base>10) {
+				char restoChar=dizionario.get(resto);
+				numeroConvertito=restoChar+numeroConvertito;
+			}else {
+				numeroConvertito=resto+numeroConvertito;
+			}
+			
 		}
-		vettore=numeroConvertito.toCharArray();
-		char invertiCon=0;
-		for(int i = 0; i < vettore.length/2; i++) {
-			invertiCon=vettore[i];
-			vettore[i]=vettore[vettore.length-1-i];
-			vettore[vettore.length-1-i]=invertiCon;
-		}
-		eNumeroConvertito.setText(new String(vettore));
+		eNumeroConvertito.setText(numeroConvertito);
 	}
 	
 	public static void main(String[] args) {
