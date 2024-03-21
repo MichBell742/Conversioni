@@ -36,6 +36,8 @@ public class ConvertiNumeroDecimale extends Application{
 		dizionario.put(16, 'G');
 
 		Button bConverti=new Button("Converti");
+
+		Button bConvertiContrario=new Button("riconverti in decimale");
 		
 		Label eNumeroDecimale= new Label("Numero decimale");
 		Label eBase= new Label("Base");
@@ -46,7 +48,8 @@ public class ConvertiNumeroDecimale extends Application{
 		griglia.add(cNumeroDec, 1, 0);
 		griglia.add(eBase, 0, 1);
 		griglia.add(cConvertiA, 1, 1);
-		griglia.add(bConverti, 0, 2, 2, 1);
+		griglia.add(bConverti, 0, 2);
+		griglia.add(bConvertiContrario, 1, 2);
 		griglia.add(eNumeroConvertito, 0, 3,2,1);
 		
 		bConverti.setMaxWidth(1000);
@@ -54,6 +57,7 @@ public class ConvertiNumeroDecimale extends Application{
 		griglia.setPadding(new Insets(10,10,10,10));
 		
 		bConverti.setOnAction(e->converti());
+		bConvertiContrario.setOnAction(e->convertiInDecimale());
 		
 		Scene scena=new Scene(griglia);
 		finestra.setTitle("conversioni numeri decimali");
@@ -67,7 +71,7 @@ public class ConvertiNumeroDecimale extends Application{
 		int numero=numeroConvertire;
 		int resto=0;
 		String numeroConvertito="";
-		char vettore[];
+		
 		while(numero!=0) {
 			numero=numeroConvertire/base;
 			resto=numeroConvertire-numero*base;
@@ -82,7 +86,27 @@ public class ConvertiNumeroDecimale extends Application{
 		}
 		eNumeroConvertito.setText(numeroConvertito);
 	}
-	
+
+	public void convertiInDecimale() {
+		char numeroConvertireCaratteri[]= cNumeroDec.getText().toCharArray();
+		int numeroConvertireIntero[]= new int[numeroConvertireCaratteri.length];
+		int base=Integer.parseInt(cConvertiA.getText());
+		int numeroDecimale=0;
+		int cont=0;
+		for(int i=numeroConvertireCaratteri.length-1; i>=0; i--) {
+			if(numeroConvertireCaratteri[i]>='0' && numeroConvertireCaratteri[i]<='9'){
+				numeroConvertireIntero[i]=numeroConvertireCaratteri[i]-'0';
+			}else if(numeroConvertireCaratteri[i]>='A' && numeroConvertireCaratteri[i]<='Z') {
+				numeroConvertireIntero[i]=(numeroConvertireCaratteri[i]-'A')+10;
+			}
+			System.out.println(numeroConvertireIntero[i]);
+		}
+		for(int i=numeroConvertireIntero.length-1; i>=0; i--) {
+			numeroDecimale+=numeroConvertireIntero[i]*Math.pow(base, cont);
+			cont++;
+		}
+		eNumeroConvertito.setText(""+numeroDecimale);
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}
