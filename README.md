@@ -1,6 +1,6 @@
-Conversioni
+# TPSIT
 Repository con codici riguardanti TPSIT
-Storico:
+## Storico:
 1-conversioni da un numero decimale ad un numero con base variabile e da un numero in una base variabile a decimale;
 2-compressione di una matrice attraverso il metodo RLE;
 
