@@ -1,2 +1,6 @@
-# Conversioni
-Repository dove sono presenti alcuni codici che permettono di convertire numeri in basi differenti
+Conversioni
+Repository con codici riguardanti TPSIT
+Storico:
+1-conversioni da un numero decimale ad un numero con base variabile e da un numero in una base variabile a decimale;
+2-compressione di una matrice attraverso il metodo RLE;
+
