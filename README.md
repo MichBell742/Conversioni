@@ -5,4 +5,4 @@ Repository con codici riguardanti TPSIT
 
 2-compressione di una matrice attraverso il metodo RLE;
 
-3-controllo di un codice in base ad alcuni algoritmi come il "bit di parità";
+3-controllo di un codice in base ad alcuni algoritmi come il "bit di parità", "LRC";
